@@ -12,9 +12,10 @@ class Config:
 
     SECRET_KEY = os.getenv('SECRET_KEY', default= 'A bad secret key')
 
-    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI', default= 'sqliite:///{os.path.join(basedir, "instance", "app.db")}')
+    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI', default= 'sqlite:///'+ os.path.join(basedir, 'instance', "app.db"))
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+#'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 
 class DevelopmentConfig(Config):
     DEBUG = True

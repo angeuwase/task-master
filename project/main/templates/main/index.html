@@ -1,0 +1,20 @@
+{%  extends 'bootstrap/base.html'   %}
+
+{%  block title %}
+Task Master
+{%  endblock    %}
+
+{%  block   navbar  %}
+{%  if current_user.is_authenticated    %}
+{%  include 'navbar_logged_in.html' %}
+{%  else    %}
+{%  include 'navbar_not_logged_in.html' %}
+{%  endif   %}
+{%  endblock    %}
+
+{%  block content %}
+<div class='container'>
+    <h1>Welcome to the Task Master Application</h1>
+    <p>Register for an account here or login in and begin to enjoy using the application!</p>
+</div>
+{%  endblock    %}

@@ -1,0 +1,30 @@
+{%  extends 'bootstrap/base.html'   %}
+{%  import 'bootstrap/wtf.html' as wtf  %}
+
+{%  block title %}
+Profile
+{%  endblock    %}
+
+{%  block   navbar  %}
+{%  if current_user.is_authenticated    %}
+{%  include 'navbar_logged_in.html' %}
+{%  else    %}
+{%  include 'navbar_not_logged_in.html' %}
+{%  endif   %}
+{%  endblock    %}
+
+{%  block   content %}
+{%  for message in get_flashed_messages()   %}
+<div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{  message }}
+  </div>
+{%  endfor  %}
+
+<div class='container'>
+    <h1>Account</h1>
+    <p>Email: {{    current_user.email  }}  </p>
+</div>
+
+
+{%  endblock    %}

@@ -1,0 +1,39 @@
+{%  extends 'bootstrap/base.html'   %}
+
+{%  block title %}
+Tasks
+{%  endblock    %}
+
+{%  block   navbar  %}
+{%  if current_user.is_authenticated    %}
+{%  include 'navbar_logged_in.html' %}
+{%  else    %}
+{%  include 'navbar_not_logged_in.html' %}
+{%  endif   %}
+{%  endblock    %}
+
+{%  block content %}
+<div class= 'container'>
+    <table>
+        <th>
+            <tr>
+                <td>ID</td>
+                <td>Task</td>
+                <td>Date Created</td>
+                <td>Actions</td>
+            </tr>
+
+        </th>
+        <tbody>
+            <tr>
+                <td>Some data</td>
+                <td>Some more data</td>
+                <td>Some more more data</td>
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+{%  endblock    %}
