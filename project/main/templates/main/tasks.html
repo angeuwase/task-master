@@ -1,4 +1,5 @@
 {%  extends 'bootstrap/base.html'   %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
 {%  block title %}
 Tasks
@@ -13,7 +14,10 @@ Tasks
 {%  endblock    %}
 
 {%  block content %}
+
 <div class= 'container'>
+  
+    <h1>Tasks To Do</h1>
     <table>
         <th>
             <tr>
@@ -25,15 +29,55 @@ Tasks
 
         </th>
         <tbody>
+            {% for task in tasks %}
+            {% if task.completed==False %}
             <tr>
-                <td>Some data</td>
-                <td>Some more data</td>
-                <td>Some more more data</td>
+                <td>{{ task.id }}</td>
+                <td>{{ task.content }}</td>
+                <td>{{ task.date_created }}</td>
+                <td><a href="{{url_for('main.delete_task', task_id= task.id)}}">Delete</a><br><a href='{{url_for("main.mark_complete", task_id=task.id)}}'> Mark as complete</a><br><a href='{{url_for("main.update_task", task_id=task.id)}}'>Update</a></td>
 
             </tr>
+            {% endif  %}
+            {% endfor %}
 
         </tbody>
     </table>
+
+    <br>
+    <br>
+    {{ wtf.quick_form(form) }}
+    <br>
+    <br>
+    <h1>Tasks Completed</h1>
+    <table>
+        <th>
+            <tr>
+                <td>ID</td>
+                <td>Task</td>
+                <td>Date Created</td>
+            </tr>
+
+        </th>
+        <tbody>
+            {% for task in tasks %}
+            {% if task.completed==True %}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.content }}</td>
+                <td>{{ task.date_created }}</td>
+
+            </tr>
+            {% endif  %}
+            {% endfor %}
+
+        </tbody>
+    </table>
+    <br>
+    <br>
+    {% if completed_tasks|length >0  %}
+    <p><a href='{{url_for("main.clear_list")}}'>Clear Completed List</a></p>
+    {% endif %}
 </div>
 
 {%  endblock    %}

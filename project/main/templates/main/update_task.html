@@ -1,5 +1,11 @@
 
 
+{%  extends 'bootstrap/base.html'   %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{%  block title %}
+Update Task
+{%  endblock    %}
 
 
 {%  block   navbar  %}
@@ -8,4 +14,14 @@
 {%  else    %}
 {%  include 'navbar_not_logged_in.html' %}
 {%  endif   %}
+{%  endblock    %}
+
+{%  block content %}
+
+<div class= 'container'>
+
+    {{ wtf.quick_form(form) }}
+
+</div>
+
 {%  endblock    %}

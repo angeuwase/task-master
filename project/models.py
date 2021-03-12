@@ -34,7 +34,6 @@ class Task(db.Model):
     content = db.Column(db.String, nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
     completed = db.Column(db.Boolean, default=False)
-    new = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
    # def __init__(self, content, date_created=utcdatetinenow, completed=False):
