@@ -16,8 +16,8 @@ def register():
     if form.validate_on_submit():
         email = form.email.data
         password = form.password.data
-        new_user = User(email, password)
-        current_app.logger.info('New user added to the database: {}'.format(new_user.email))
+        
+        
 
         user = User.query.filter_by(email=email).first()
 
@@ -26,11 +26,13 @@ def register():
             return redirect(url_for('auth.login'))
 
         else:
+            new_user = User(email, password)
 
             try:
                 db.session.add(new_user)
                 db.session.commit()
                 flash('You have been registered. Please login')
+                current_app.logger.info('New user added to the database: {}'.format(new_user.email))
                 return redirect(url_for('auth.login'))
 
 
